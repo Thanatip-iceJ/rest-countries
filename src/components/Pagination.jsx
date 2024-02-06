@@ -9,6 +9,7 @@ function Pagination() {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  const region = queryParams.get("region");
   const pageValue = queryParams.get("page");
   const lastIndex = pageValue * postsPerPage;
   const firstIndex = lastIndex - postsPerPage;
@@ -18,7 +19,7 @@ function Pagination() {
   if (allCountries?.data) {
     for (
       let i = 1;
-      i <= Math.ceil(allCountries?.data.length / postsPerPage);
+      i <= Math.ceil(allCountries.data.length / postsPerPage);
       i++
     ) {
       pages.push(i);
@@ -31,8 +32,13 @@ function Pagination() {
         {pages.map((el) => (
           <button
             key={el}
-            onClick={() => setSearchParams({ ...searchParams, page: el })}
-            className="active"
+            value={el}
+            onClick={(e) => {
+              searchParams.set("page", el);
+              setSearchParams(searchParams);
+              setActive(e);
+            }}
+            className={`page-btn ${el == pageValue && "active"}`}
           >
             {el}
           </button>
