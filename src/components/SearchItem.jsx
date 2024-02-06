@@ -8,7 +8,7 @@ function SearchItem({ flag, name }) {
       className="px-5 py-2 flex items-center gap-5 hover:bg-base-200 rounded-md transition-all duration-150 cursor-pointer"
       onClick={() => navigate(`/${name}`)}
     >
-      <img src={flag} alt="" className="max-h-[16px] max-w-[20px]" />
+      <img src={flag} alt="flag" className="max-h-[16px] max-w-[20px]" />
       <p>{name}</p>
     </div>
   );

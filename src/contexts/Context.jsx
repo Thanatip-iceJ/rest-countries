@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { createContext } from "react";
@@ -13,13 +14,18 @@ function ContextProvider({ children }) {
   const [currentCountry, setCurrentCountry] = useState(null);
   const [detailsPageLoading, setDetailsPageLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [postsPerPage, setPostsPerPage] = useState(15);
+  const [allForSearch, setAllForSearch] = useState(null);
 
   console.log(allCountries);
-  console.log("CURRENT=> ", currentCountry);
+  useEffect(() => {
+    getAll();
+  }, []);
   const getAll = async () => {
     try {
       const res = await axios.get("https://restcountries.com/v3.1/all");
       setAllCountries(res);
+      setAllForSearch(res);
     } catch (err) {
       console.log(err);
     }
@@ -65,6 +71,9 @@ function ContextProvider({ children }) {
     isSearching,
     setIsSearching,
     setFalse,
+    postsPerPage,
+    setPostsPerPage,
+    allForSearch,
   };
 
   return <Context.Provider value={sharedObj}>{children}</Context.Provider>;

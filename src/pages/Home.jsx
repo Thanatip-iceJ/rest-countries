@@ -6,24 +6,28 @@ import { useEffect } from "react";
 import DropDown from "../components/DropDown";
 import { useSearchParams, useLocation } from "react-router-dom";
 import Pagination from "../components/Pagination";
+import { useState } from "react";
 
 function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [postsPerPage, setPostsPerPage] = useState(15);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const paramsValue = queryParams.get("region");
-  console.log(paramsValue);
+  const pageValue = queryParams.get("page");
 
   const { getAll, getByRegion, setSearchInput } = useCon();
   useEffect(() => {
-    if (!paramsValue) {
-      getAll();
-      setSearchParams({ page: 1 });
-    } else {
-      getByRegion(paramsValue);
-    }
     setSearchInput("");
-  }, [paramsValue]);
+    if (!pageValue) {
+      setSearchParams({ page: 1 });
+    }
+    if (paramsValue) {
+      getByRegion(paramsValue);
+    } else {
+      getAll();
+    }
+  }, [paramsValue, pageValue]);
 
   return (
     <div>

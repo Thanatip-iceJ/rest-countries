@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  column-gap: 4px;
+}
+
+.pagination button {
+  border-radius: 8px;
+  border: 1px gray solid;
+  padding-inline: 8px;
+  padding-block: 4px;
+}
+.pagination button:hover:not(.active) {
+  background-color: rgb(201, 201, 201);
+}
+
+.pagination button.active {
+  background-color: black;
+  color: white;
+}

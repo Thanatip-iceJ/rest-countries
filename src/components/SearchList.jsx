@@ -3,8 +3,8 @@ import SearchItem from "./SearchItem";
 import { useCon } from "../contexts/Context";
 
 function SearchList() {
-  const { searchInput, allCountries } = useCon();
-  const searchArr = allCountries.data
+  const { searchInput, allForSearch } = useCon();
+  const searchArr = allForSearch.data
     .filter((el) => el.name.common.toLowerCase().includes(searchInput))
     .slice(0, 8);
   return (

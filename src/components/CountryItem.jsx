@@ -5,7 +5,7 @@ function CountryItem({ country }) {
   const navigate = useNavigate();
   return (
     <div
-      className="card w-96 bg-base-100 shadow-xl cursor-pointer hover:relative hover:bottom-1 hover:left-1"
+      className="card w-96 bg-base-100 shadow-xl cursor-pointer hover:scale-[1.05] transition-all duration-200"
       onClick={() => navigate(`/${country.name.common}`)}
     >
       <figure className="px-10 pt-10">
