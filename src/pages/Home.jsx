@@ -14,7 +14,7 @@ function Home() {
   const paramsValue = queryParams.get("region");
   console.log(paramsValue);
 
-  const { getAll, getByRegion, allCountries } = useCon();
+  const { getAll, getByRegion, setSearchInput } = useCon();
   useEffect(() => {
     if (!paramsValue) {
       getAll();
@@ -22,6 +22,7 @@ function Home() {
     } else {
       getByRegion(paramsValue);
     }
+    setSearchInput("");
   }, [paramsValue]);
 
   return (

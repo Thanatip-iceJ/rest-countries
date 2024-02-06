@@ -12,7 +12,9 @@ function ContextProvider({ children }) {
   const [searchInput, setSearchInput] = useState("");
   const [currentCountry, setCurrentCountry] = useState(null);
   const [detailsPageLoading, setDetailsPageLoading] = useState(false);
-  // console.log(allCountries);
+  const [isSearching, setIsSearching] = useState(false);
+
+  console.log(allCountries);
   console.log("CURRENT=> ", currentCountry);
   const getAll = async () => {
     try {
@@ -46,6 +48,7 @@ function ContextProvider({ children }) {
       setDetailsPageLoading(false);
     }
   };
+  const setFalse = () => setIsSearching(false);
 
   const sharedObj = {
     allCountries,
@@ -59,6 +62,9 @@ function ContextProvider({ children }) {
     getByName,
     detailsPageLoading,
     setDetailsPageLoading,
+    isSearching,
+    setIsSearching,
+    setFalse,
   };
 
   return <Context.Provider value={sharedObj}>{children}</Context.Provider>;
