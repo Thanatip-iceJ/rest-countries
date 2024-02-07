@@ -16,12 +16,9 @@ function Pagination() {
   console.log(searchParams);
 
   let pages = [];
-  if (allCountries?.data) {
-    for (
-      let i = 1;
-      i <= Math.ceil(allCountries.data.length / postsPerPage);
-      i++
-    ) {
+  if (allCountries.data) {
+    // prettier-ignore
+    for (let i = 1;i <= Math.ceil(allCountries.data.length / postsPerPage);i++) {
       pages.push(i);
     }
   }
